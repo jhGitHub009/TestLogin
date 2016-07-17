@@ -1,0 +1,46 @@
+{% extends "materials/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+	<body>
+		<h1>{{material}} Count Result List</h1>
+		<div class="table-responsive">
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td><B>Customer's Name</B></td>
+					<td><B>Material's Name</B></td>
+					<td><B>Material's Code</B></td>
+					<td><B>Control Code</B></td>
+					<td><B>Zone Code</B></td>
+					<td><B>Pallet Code</B></td> 
+					<td><B>Total Box Count</B></td>
+					<td><B>Total EA Count</B></td>
+					<!-- <td><B>Packing Box Count</B></td> -->
+					<td><B>Opened Box Count</B></td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for result in detail_result %}
+				<tr>
+					<td> {{result.customer}} </td>
+					<td> {{result.material_name}} </td>
+					<td> {{result.material_code}} </td>
+					<td> {{result.control_code}} </td>
+					<td> {{result.zone}} </td>
+					<td> {{result.pallet}} </td>
+					{% if result.unpacking_Box %}
+					<td> {{result.TTL_BOX}}({{result.unpacking_Box}}) </td>
+					{% else %}
+					<td> {{result.TTL_BOX}} </td>
+					{% endif %}
+					<td> {{result.TTL_EA}} </td>	
+					<!-- <td> {{result.packing_box}} </td> -->
+					<td> {{result.unpacking_Box}} </td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
+	</body>
+{% endblock %}

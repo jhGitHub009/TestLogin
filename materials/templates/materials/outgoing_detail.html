@@ -1,0 +1,15 @@
+<!-- {% extends "materials/layout.html" %}
+{% load staticfiles %}
+{% block content %} -->
+<h1>{{ customer.id }}</h1>
+
+<!-- {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %} -->
+<form action="{% url 'materials:outsubmit' customer %}" method="post">
+{% csrf_token %}
+{% for customer in material_list.customer_set.all %}
+	<input type="radio" name="choice" id="customer{{ forloop.counter }}" value="{{ customer.id }}">
+	<label for="customer{{ forloop.counter }}">{{ customer.id }}</label>
+{% endfor %}
+</form>
+<!-- <label for =  -->
+<!-- {% endblock %}

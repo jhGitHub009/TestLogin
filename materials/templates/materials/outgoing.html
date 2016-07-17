@@ -1,0 +1,49 @@
+{% extends "materials/layout.html" %}
+
+<html> 
+
+    {% block content %}
+	<body>
+		<h1>{{Date}} Outgoing List</h1>
+    	<div class="table-responsive">
+        
+        <table class="table table-striped">
+	        <thead>
+	            <tr>
+					<td><B>Outgoing Date</B></td>
+	            	<td><B>Customer's Name</B></td>
+	                <td><B>Material's Name</B></td>
+	                <td><B>Material's Code</B></td>
+	                <td><B>Control Code</B></td>
+					<td><B>Zone Code</B></td>
+					<td><B>Pallet Code</B></td>
+	                <td><B>Outgoing Unit</B></td>
+					<td><B>Packing Control</B></td>
+					<td><B>Outgoing Count</B></td>
+	            </tr>
+	        </thead>
+            <tbody>
+				{% for outgoing in outgoing_list %}
+				<tr>
+					<td> {{outgoing.outgoing_date.year}}/{{outgoing.outgoing_date.month}}/{{outgoing.outgoing_date.day}}</td>
+					<td> <a href="c{{outgoing.material.customer.id}}/">{{outgoing.material.customer}}</a></td>
+					<td> <a href="m{{outgoing.material.id}}/"> {{outgoing.material.material_name}}</a></td>
+					<td> {{outgoing.material.material_code}} </td>
+					<td> {{outgoing.material.control_code}} </td>
+					<td> <a href="z{{outgoing.pallet.zone.id}}/">{{outgoing.pallet.zone}}</a></td>
+					<td> <a href="p{{outgoing.pallet.id}}/"> {{outgoing.pallet}}</a></td>
+					<td> {{outgoing.outgoing_unit}} </td>
+					{% if outgoing.unpackBox_count %}
+					<td> {{outgoing.packing}}({{outgoing.unpackBox_count}}) </td>
+					{% else %}
+					<td> {{outgoing.packing}} </td>
+					{% endif %}
+					<td> {{outgoing.outgoing_count}} </td>
+				</tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </body>
+    {% endblock %}
+</html>

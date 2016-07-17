@@ -1,0 +1,40 @@
+{% extends "materials/layout.html" %}
+
+<html>
+	{% block content %}
+	<body>
+		<h1>{{customer}} Material List</h1>
+		<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td><B>Customer's Name</B></td>
+					<td><B>Material's Name</B></td>
+					<td><B>Material's Code</B></td>
+					<td><B>Control Code</B></td>
+					<td><B>Control Unit</B></td>
+					<td><B>EA / BOX</B></td>
+				</tr>
+			</thead>
+			<tbody>
+			{% for material in material_list %}
+				<tr>
+					{% if customer == 'Total' %}
+					<td>
+					<a href="c/{{material.customer.id}}/">{{material.customer}}</a> </td>
+					{% else %}
+					<td> {{material.customer}} </td>
+					{% endif %}
+					<td> {{material.material_name}} </td>
+					<td> {{material.material_code}} </td>
+					<td> {{material.control_code}} </td>
+					<td> {{material.unit}} </td>
+					<td> {{material.Box_unit}} </td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+		</div>
+	</body>
+	{% endblock %}
+</html>

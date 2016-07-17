@@ -1,0 +1,30 @@
+<!-- {% extends "materials/layout.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% endblock %}
+
+ -->
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <td><B>incoming's Incoming_date</B></td>
+        <td><B>incoming's material</B></td>
+        <td><B>incoming's zone</B></td>
+        <td><B>incoming's pallet</B></td>
+        <td><B>incoming's Incoming_count</B></td>
+    </tr>
+</thead>
+    <tbody>
+    {% for incoming in incoming.objects.all %}
+    <tr>
+        <td> {{incoming.Incoming_date}}</td>
+        <td> {{incoming.material}} </td>
+        <td> {{incoming.zone}} </td>
+        <td> {{incoming.pallet}} </td>
+        <td> {{incoming.Incoming_count}} </td>
+    </tr>
+    {% endfor %} 
+    </tbody>
+</table>
